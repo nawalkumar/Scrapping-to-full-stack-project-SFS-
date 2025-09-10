@@ -1,24 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import Home from './components/Home'
-import ItemList from './components/ItemList';
-import ItemDetail from './components/ItemDetail';
+// src/App.jsx
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import { AuthProvider } from "./context/AuthContext";
+import Navbar from "./components/Navbar";
+import Catogerization from "./pages/Catogerization";
 
-const App = () => {
+function App() {
   return (
-    <Provider store={store}>
-      <Router>
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/items" element={<ItemList />} />
-          <Route path="/items/:id" element={<ItemDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/catogerization" element={<Catogerization />} />
         </Routes>
-      </Router>
-    </Provider>
+      </BrowserRouter>
+    </AuthProvider>
   );
-};
-
+}
 
 export default App;
